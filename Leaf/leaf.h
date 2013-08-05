@@ -30,6 +30,11 @@ private:
 
 private:
 	MusicPlayer musicPlayer;
+
+private: // Windows Keyboard Hook
+	static HHOOK hHook;
+	void UpdateKeyState(BYTE *keystate, int keycode);
+	static LRESULT CALLBACK lowLevelKeyBoardProc(int nCode, WPARAM wParam, LPARAM lParam);
 };
 
 #endif // LEAF_H

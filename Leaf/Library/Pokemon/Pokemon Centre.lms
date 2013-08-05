@@ -1,0 +1,17 @@
+Instrument="flute"
+Tempo="134"
+Measure="1"
+
+[SHEET START]
+H1w
+[1e L6e H1e 5e 5e 4q 3e] [2e L7q 7h] [7e 5e 7e H3e 3e 2q L7e] [H1e 3q 3h] [1e L6e H1e 5e 5e 4q 3e] [2e L7q 7h]
+[7e 5e 7e H3e 3e 2q L7e] [H1w] [3h 5h] [4e 5e 4e 3e 2h] [L7h H2h] [3e 4e 3e 2e 1h] [3h 5h]
+[4e 3e 4e 5e 6h] [5q 4e 3e 4h] [3e 4e 3e 2e 1h]
+
+[1e L6e H1e 5e 5e 4q 3e] [2e L7q 7h] [7e 5e 7e H3e 3e 2q L7e] [H1e 3q 3h] [1e L6e H1e 5e 5e 4q 3e] [2e L7q 7h]
+[7e 5e 7e H3e 3e 2q L7e] [H1w] [3h 5h] [4e 5e 4e 3e 2h] [L7h H2h] [3e 4e 3e 2e 1h] [3h 5h]
+[4e 3e 4e 5e 6h] [5q 4e 3e 4h] [3e 4e 3e 2e 1h]
+
+[1e L6e H1e 5e 5e 4q 3e] [2e L7q 7h] [7e 5e 7e H3e 3e 2q L7e] [H1e 3q 3h] [1e L6e H1e 5e 5e 4q 3e] [2e L7q 7h]
+[7e 5e 7e H3e 3e 2q L7e H1e]
+[SHEET END]

@@ -1,0 +1,38 @@
+Instrument="flute"
+Tempo="95"
+Measure="0.75"
+
+[SHEET START]
+2w2w
+
+[2q 4q 6q][2h 4e 3e][3q 1qe 3e][2h q][2q 4q 6q][H2h 2e 1e]
+
+[1hq][1e 2e L7qe 3e][4q 4q 4e 3e][4e 3e 2q 3e 4e][3e 2e 1q 1e 3e][2qe e 3e]
+[4q 4q 4e 3e][4e 5e 2q 3e 4e][3e 4e 5q 4e 3e][2h q][6q 6q 6qe 5e]
+[6e 5e 4q 5e 6e][5e 4e 3q 4e 5e][4e 3e 2h][6q 6q 6qe 5e][6e H2e 2q L6e H2e]
+[1q L3q H1q][1e 2e L7q 5q][H1q 2q 3e 3e][4e 3e 2h][2w][h]
+
+[1q 2q 3q][4e 5e 2h][2w][h][L2q 4q 6q][2h 4e 3e]
+[3q 1qe 3e][2hq][2q 4q 6q][H2h 4e 3e][3h 1e 3e][2h e L6e]
+[H2h 2q][1q L6q 7q][H1hq][1h L6e H1e][2h 2e 3e]
+[4q L6qe 7e][H1hq][1h q][L7h 7e 7e][6q 5qe 4e][5hq][5h q]
+
+[7h H1e 2e][1q L6qe 4e][5hq][5h q][4q 4q 4e 3e][4e 3e 2q 3e 4e]
+[3e 2e 1q 2e 3e][2qe q 3e][4q 4q 4qe 3e][4e 5e 2q 3e 4e]
+[3e 4e 5q 4e 3e][2h q][6q 6q 6qe 5e][6e 5e 4q 5e 6e][5e 4e 3q 4e 5e]
+[4e 3e 2h][6q 6q 6qe 5e][6e H2e 2q L6e H2e][1q L3q H1q][1e 2e L7h]
+
+[H1q 2q 3e 3e][4e 3e 2h][2w][h][1q 2q 3q]
+[4e 5e 2h][2w][h][L2q 4q 6q][2h 4e 3e][3q 1qe 3e]
+[2hq][2q 4q 6q][H2h 4e 3e][3h 1e 3e][2h 2e L6e]
+[q H2e 1e 2q][2h 2e 1e][2q L7h][h][e H3e 2e 3q]
+
+[3q 1h][3q 2q 4q][3e 2e 1q q][L6q H1q 3q][L6h H1e L7e][7q 5qe 7e]
+[6h q][6q H1q 3q][6h 8e 7e][7h 5e 7e][6h q][L6q H1q 3q]
+[L6h H1e L7e][7q 5qe 7e][6h q][6q H1q 3q][6h 8e 7e]
+[7h 5e 7e][6h q 3e][6h 6q][5q 3q 4q]
+
+[5hq][5h 3e 5e][6h 6e 7e][8q 3qe 4e][5hq][5h q][4h 4e 4e]
+[3q 2qe 1e][2hq][2h q][4h 5e 6e][5q 3qe 1e][2hq][2hq]
+
+[SHEET END]

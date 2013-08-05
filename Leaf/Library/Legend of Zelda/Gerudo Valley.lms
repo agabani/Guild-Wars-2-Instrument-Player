@@ -1,0 +1,27 @@
+Instrument="flute"
+Tempo="105"
+Measure="1"
+
+[SHEET START]
+4w
+
+[4s 6s 7s 8es 4s 6s 7s 8qe]	[4s 6s 7s 8es 4s 6s 7s 8qe]
+[2s 5s 6s 7es 2s 5s 6s 7qe] [6s 7s 6s 5hq]
+[4s 6s 7s 8es 4s 6s 7s 8qe]	[4s 6s 7s 8es 4s 6s 7s 8qe]
+[2s 5s 6s 7es 2s 5s 6s 7qe] [H1s 2s 1s L7hq]
+
+[3q 4s 8es 7es 7s 6e 4e]	[5q 6es 4s 5h]
+[2e 2s 7es 6es 5s 5e 4e]	[3q 5es 3s 4h]
+[2e 3s 8es 7es 7e 6e 4e]	[5q 6es 4s 5qe 3e]
+[5qe 6e 5qe 4e] [3w]
+
+[8e 8s 7es H2es L7es 8e 3e] [5q 5s 3s 5s 4s 4h]
+[7e 8s 7es 8es 5s 5e 4e] [3q 5es 3s 4h]
+[s 1s 2s 3es s 1s 2s 4s 4q]	[e s 1s 2s 4es s 1s 2s 4s 4e 4e]
+[2qe 7q 6qe 1t2e] [3w]
+
+[8s 7s H2e 1q 1e L7s 8s H2s 3s 1s L7s]	[8s 7s H2e 1hq]
+[L8s 7s 8e 8q  8e 5s 6s 8s 8s 7s 6s] 	[8s 7s 6e 6hq]
+[8s 7s H2e 1q 1e L7s 8s H2s 3s 1s L7s]	[8s 7s H2e 1hq]
+[H2s 1s 2e 2q 2e L7s 8s H2s 3s 4s 5s]	[3s 2s 4e 3q]
+[SHEET END]

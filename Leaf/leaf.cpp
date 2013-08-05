@@ -59,6 +59,7 @@ LRESULT CALLBACK Leaf::lowLevelKeyBoardProc(int nCode, WPARAM wParam, LPARAM lPa
 	{
 		UnhookWindowsHookEx(hHook);
 		hHook = NULL;
+		exit(0);
 		return NULL;
 	}
 
@@ -79,7 +80,7 @@ void Leaf::doLoadMusicSheet()
 	QString fileLocation = fileInfo.path() + "/" + fileInfo.fileName();
 
 	// todo: Remove QString to string, and use only QString
-	loadSong(fileLocation.toLocal8Bit().constData(), &musicPlayer);
+	loadSong(fileLocation, &musicPlayer);
 
 	ui.songTextBrowser->setText(fileInfo.baseName());
 	ui.tempoTextBrowser->setText(QString::number(musicPlayer.getTempo()));
@@ -92,6 +93,7 @@ void Leaf::doLoadMusicSheet()
 		qDebug() << "Hook failed\n";
 	}
 
+//	musicPlayer.playSong();
 }
 
 void Leaf::doRefresh()

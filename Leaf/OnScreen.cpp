@@ -6,7 +6,8 @@ OnScreen::OnScreen(void)
 {
 	// Obtain window handles
 	keyboard = FindWindowA(NULL, "On-Screen Keyboard");
-	guildwars2 = FindWindowA(NULL, "Guild Wars 2");
+//	guildwars2 = FindWindowA(NULL, "Guild Wars 2");
+	guildwars2 = FindWindowA(NULL, "Untitled - Notepad");
 
 	// Check if On-Screen keyboard is active
 	RECT keyboardlocation;

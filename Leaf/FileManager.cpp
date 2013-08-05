@@ -1,30 +1,21 @@
 #include "stdafx.h"
 #include "FileManager.h"
 
-template <class T>
-T getValue (std::string &text, std::string term)
+
+QString getValue (QString& text, QString term)
 {
-	T value;
+	int start = text.indexOf(term,0);
 
-	std::stringstream ss;
-	size_t startLoc, endLoc;
-
-	startLoc = text.find(term);
-
-	if (startLoc == std::string::npos) {
+	if (start == -1) {
 		return 0;
 	}
 
-	startLoc += term.length() + 1;
-	endLoc = text.find('"', startLoc);
+	start += term.length()+1;
+	int end = text.indexOf('"',start+1);
 
-	ss << text.substr(startLoc, endLoc-startLoc);
-	ss >> value;
-
-	return value;
+	return text.mid(start, end-start);
 }
-
-
+/*
 int getMusicSheet (std::string &text, std::vector <char> &sheet)
 {
 	std::string term = "[SHEET START]";
@@ -86,33 +77,85 @@ int getMusicSheet (std::string &text, std::vector <char> &sheet)
 
 	return 0;
 }
-
-
-int loadSong(std::string path, MusicPlayer *object)
+*/
+int getMusicSheet (QString &text, std::vector <char> &sheet)
 {
-	// Save file in buffer
-	std::fstream musicFile;
-	musicFile.open(path, std::ios_base::in | std::ios_base::binary);
-
-	if (!musicFile.good()) {
+	QString term = "[SHEET START]";
+	int start = text.indexOf(term,0);
+	if (start == -1) {
 		return 1;
 	}
+	start += term.length();
 
-	musicFile.seekg(0, musicFile.end);
-	int fileSize = (int)musicFile.tellg();
-	musicFile.seekg(0, musicFile.beg);
+	term = "[SHEET END]";
+	int end = text.indexOf(term,0);
+	if (end == -1) {
+		return 2;
+	}
 
-	std::string fileContent;
-	fileContent.resize(fileSize);
+	// Process sheet
+	for (unsigned int index = start; index < end; index++)
+	{
+		switch (text.at(index).toLatin1())
+		{
+		case '1':
+		case '2':
+		case '3':
+		case '4':
+		case '5':
+		case '6':
+		case '7':
+		case '8':
 
-	musicFile.read(&fileContent[0], fileSize);
+		case 'w':
+		case 'h':
+		case 'q':
+		case 'e':
+		case 's':
+		case 't':
+		case 'S':
 
-	musicFile.close();
+		case 'L':
+		case 'M':
+		case 'H':
+
+			sheet.push_back(text.at(index).toLatin1());
+			break;
+
+		case ' ':
+		case '\n':
+		case '[':
+		case ']':
+
+			sheet.push_back(0);
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	return 0;
+}
+
+
+int loadSong(QString path, MusicPlayer *object)
+{
+	// Pull file contents
+	QFile file(path);
+	if(!file.open(QIODevice::ReadOnly)) {
+		QMessageBox::information(0, "Error", file.errorString());
+	}
+
+	QTextStream in(&file);
+
+	QString line = in.readAll();
+	std::string fileContent = line.toLocal8Bit().constData();
 
 	// Pulling song data
-	int tempo = getValue <int> (fileContent,"Tempo=");
-	float measure = getValue <float> (fileContent, "Measure=");
-	std::string instrument = getValue <std::string> (fileContent, "Instrument=");
+	int tempo = getValue(line,"Tempo=").toInt();
+	float measure = getValue(line, "Measure=").toFloat();
+	QString instrument = getValue(line, "Instrument=");
 
 	if (!tempo || !measure || !instrument.length()) {
 		return 2;
@@ -120,7 +163,7 @@ int loadSong(std::string path, MusicPlayer *object)
 
 	// Pull music sheet
 	std::vector <char> sheet;
-	if (getMusicSheet(fileContent, sheet)) {
+	if (getMusicSheet(line, sheet)) {
 		return 3;
 	}
 
@@ -129,13 +172,12 @@ int loadSong(std::string path, MusicPlayer *object)
 		object->loadBell();
 	else if (instrument == "flute")
 		object->loadFlute();
-	else if (instrument == "Horn")
+	else if (instrument == "horn")
 		object->loadHorn();
 	else return 4;
 
 	object->setTempo(tempo);
 	object->setMeasure(measure);
-
 	object->loadMusicSheet(sheet);
 
 	return 0;

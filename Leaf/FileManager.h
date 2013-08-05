@@ -1,4 +1,4 @@
 #include "MusicPlayer.h"
 
-int loadSong(std::string path, MusicPlayer *object);
+int loadSong(QString path, MusicPlayer *object);
 

@@ -33,6 +33,33 @@
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="Hope">
+      <UniqueIdentifier>{402665ac-c527-4fca-a99c-4665ed8bb244}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hope\Instrument">
+      <UniqueIdentifier>{a659eed6-fd75-44e1-a078-b06108ba13df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hope\Instrument\Bell">
+      <UniqueIdentifier>{5c137a3b-abcb-40e6-ba73-6508484fb2c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hope\Instrument\Flute">
+      <UniqueIdentifier>{4925a611-477a-4b8a-9d51-09dbed6b687a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hope\Instrument\Horn">
+      <UniqueIdentifier>{d20322ed-b32d-4299-8865-a7de3fb80aaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hope\Controller">
+      <UniqueIdentifier>{81bc1640-e3d4-4e92-a0b0-caac2e3184dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hope\Controller\On-Screen">
+      <UniqueIdentifier>{906dc119-0a4f-42b4-962e-3be94c1523ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hope\Music Player">
+      <UniqueIdentifier>{a5300ec8-e512-4533-b3ad-f0e582af931a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hope\FileManager">
+      <UniqueIdentifier>{82900998-6752-4ae2-b9b2-2ab3a0e5e32c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -71,6 +98,30 @@
     <ClCompile Include="GeneratedFiles\Release\moc_preference.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="Instrument.cpp">
+      <Filter>Hope\Instrument</Filter>
+    </ClCompile>
+    <ClCompile Include="Bell.cpp">
+      <Filter>Hope\Instrument\Bell</Filter>
+    </ClCompile>
+    <ClCompile Include="Flute.cpp">
+      <Filter>Hope\Instrument\Flute</Filter>
+    </ClCompile>
+    <ClCompile Include="Horn.cpp">
+      <Filter>Hope\Instrument\Horn</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller.cpp">
+      <Filter>Hope\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="OnScreen.cpp">
+      <Filter>Hope\Controller\On-Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="MusicPlayer.cpp">
+      <Filter>Hope\Music Player</Filter>
+    </ClCompile>
+    <ClCompile Include="FileManager.cpp">
+      <Filter>Hope\FileManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -84,6 +135,30 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_preference.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Instrument.h">
+      <Filter>Hope\Instrument</Filter>
+    </ClInclude>
+    <ClInclude Include="Bell.h">
+      <Filter>Hope\Instrument\Bell</Filter>
+    </ClInclude>
+    <ClInclude Include="Flute.h">
+      <Filter>Hope\Instrument\Flute</Filter>
+    </ClInclude>
+    <ClInclude Include="Horn.h">
+      <Filter>Hope\Instrument\Horn</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller.h">
+      <Filter>Hope\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="OnScreen.h">
+      <Filter>Hope\Controller\On-Screen</Filter>
+    </ClInclude>
+    <ClInclude Include="MusicPlayer.h">
+      <Filter>Hope\Music Player</Filter>
+    </ClInclude>
+    <ClInclude Include="FileManager.h">
+      <Filter>Hope\FileManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

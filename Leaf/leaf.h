@@ -4,6 +4,8 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_leaf.h"
 
+#include "MusicPlayer.h"
+
 class Leaf : public QMainWindow
 {
 	Q_OBJECT
@@ -25,6 +27,9 @@ private:
 private:
 	Ui::LeafClass ui;
 	QFileSystemModel model;
+
+private:
+	MusicPlayer musicPlayer;
 };
 
 #endif // LEAF_H

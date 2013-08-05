@@ -83,6 +83,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="about.cpp" />
+    <ClCompile Include="Bell.cpp" />
+    <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="FileManager.cpp" />
+    <ClCompile Include="Flute.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_about.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -107,8 +111,12 @@
     <ClCompile Include="GeneratedFiles\Release\moc_preference.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Horn.cpp" />
+    <ClCompile Include="Instrument.cpp" />
     <ClCompile Include="leaf.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MusicPlayer.cpp" />
+    <ClCompile Include="OnScreen.cpp" />
     <ClCompile Include="preference.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -116,6 +124,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bell.h" />
+    <ClInclude Include="Controller.h" />
+    <ClInclude Include="FileManager.h" />
+    <ClInclude Include="Flute.h" />
     <ClInclude Include="GeneratedFiles\ui_about.h" />
     <ClInclude Include="GeneratedFiles\ui_preference.h" />
     <CustomBuild Include="preference.h">
@@ -149,6 +161,10 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB  "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtANGLE" "-IC:\Qt\Qt5.1.0\5.1.0\msvc2012\include" "-fstdafx.h" "-f../../leaf.h"</Command>
     </CustomBuild>
+    <ClInclude Include="Horn.h" />
+    <ClInclude Include="Instrument.h" />
+    <ClInclude Include="MusicPlayer.h" />
+    <ClInclude Include="OnScreen.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>

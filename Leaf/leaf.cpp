@@ -3,6 +3,9 @@
 #include "about.h"
 #include "preference.h"
 
+// Remove following header
+#include "FileManager.h"
+
 Leaf::Leaf(QWidget *parent)
 	: QMainWindow(parent)
 {
@@ -26,7 +29,15 @@ void Leaf::doLoadMusicSheet()
 	if (fileInfo.suffix() != "lms") 
 		return;
 
-//	QMessageBox::about(this, "Debug", fileInfo.suffix());
+	QString fileLocation = fileInfo.path() + "/" + fileInfo.fileName();
+
+	// todo: Remove QString to string, and use only QString
+	loadSong(fileLocation.toLocal8Bit().constData(), &musicPlayer);
+
+	ui.songTextBrowser->setText(fileInfo.baseName());
+	ui.tempoTextBrowser->setText(QString::number(musicPlayer.getTempo()));
+	ui.measureTextBrowser->setText(QString::number(musicPlayer.getMeasure()));
+	ui.instrumentTextBrowser->setText(musicPlayer.getInstrumentName().c_str());
 }
 
 void Leaf::doRefresh()

@@ -69,7 +69,7 @@
      <string>Measure</string>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser">
+   <widget class="QTextBrowser" name="songTextBrowser">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -88,7 +88,7 @@
      <enum>Qt::ScrollBarAlwaysOff</enum>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser_2">
+   <widget class="QTextBrowser" name="instrumentTextBrowser">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -107,7 +107,7 @@
      <enum>Qt::ScrollBarAlwaysOff</enum>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser_3">
+   <widget class="QTextBrowser" name="tempoTextBrowser">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -126,7 +126,7 @@
      <enum>Qt::ScrollBarAlwaysOff</enum>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser_4">
+   <widget class="QTextBrowser" name="measureTextBrowser">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -269,8 +269,8 @@
    <slot>showAboutWindow()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>299</x>
-     <y>199</y>
+     <x>-1</x>
+     <y>-1</y>
     </hint>
     <hint type="destinationlabel">
      <x>299</x>

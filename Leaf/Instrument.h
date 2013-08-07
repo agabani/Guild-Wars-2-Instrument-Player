@@ -22,4 +22,3 @@ protected:
 	int note;
 	
 };
-

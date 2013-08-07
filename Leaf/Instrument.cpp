@@ -19,7 +19,6 @@ Instrument::~Instrument(void)
 int Instrument::loadOnScreen()
 {
 	controller = new OnScreen;
-//	std::cout << "loaded controller" << std::endl;
+//	qDebug() << "loaded controller\n";
 	return 0;
 }
-

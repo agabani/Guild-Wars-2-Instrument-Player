@@ -89,7 +89,7 @@ int OnScreen::leftClick()
 	return 0;
 }
 
-
+// todo: change training program to GUI
 int OnScreen::trainMouse()
 {
 	RECT keyboardlocation;
@@ -116,7 +116,7 @@ int OnScreen::trainMouse()
 	return 0;
 }
 
-
+// todo: change training save to Qt
 int OnScreen::saveTrain()
 {
 	std::fstream train;
@@ -134,7 +134,7 @@ int OnScreen::saveTrain()
 	return 0;
 }
 
-
+// todo: change load training to Qt
 int OnScreen::loadTrain()
 {
 	std::fstream train;
@@ -154,4 +154,3 @@ int OnScreen::loadTrain()
 	train.close();
 	return 0;
 }
-

@@ -1,177 +1,184 @@
 #include "stdafx.h"
 #include "MusicPlayer.h"
 
-
 MusicPlayer::MusicPlayer(void)
+	: _timer (NULL), _tickRate(25), _isPlaying(false)
 {
 }
-
 
 MusicPlayer::~MusicPlayer(void)
 {
-}
-
-
-int MusicPlayer::loadBell()
-{
-	instrument = new Bell;
-	instrumentName = "Bell"; // User readable
-	return 0;
-}
-
-
-int MusicPlayer::loadFlute()
-{
-	instrument = new Flute;
-	instrumentName = "Flute"; // User readable
-	return 0;
-}
-
-int MusicPlayer::loadHorn()
-{
-	instrument = new Horn;
-	instrumentName = "Horn"; // User readable
-	return 0;
-}
-
-
-int MusicPlayer::loadMusicSheet(std::vector <char> object)
-{
-	musicSheet = object;
-	return 0;
-}
-
-
-int MusicPlayer::playSong()
-{
-	int beat = 60 * 1000 / tempo;
-	int octave = 1;
-
-	for (unsigned int i = 0; i < musicSheet.size(); i++)
-	{	
-		switch (musicSheet.at(i))
-		{
-		case 0:
-
-			for (int forward = 1; i + forward < musicSheet.size(); forward++)
-			{
-				switch (musicSheet.at(i + forward))
-				{
-				case '1': case '2': case '3': case '4': case '5':
-				case '6': case '7': case '8': case '9': case '0':
-					forward = musicSheet.size();
-					break;
-				case 'w': case 'h': case 'q': case 's': case 't': case 'S':
-					instrument->stopNote();
-					forward = musicSheet.size();
-					break;
-				default:
-					break;
-				}
-			}
-
-			break;
-		case '1': instrument->playNote(1); break;
-		case '2': instrument->playNote(2); break;
-		case '3': instrument->playNote(3); break;
-		case '4': instrument->playNote(4); break;
-		case '5': instrument->playNote(5); break;
-		case '6': instrument->playNote(6); break;
-		case '7': instrument->playNote(7); break;
-		case '8': instrument->playNote(8); break;
-		case '9': instrument->playNote(9); break;
-		case '0': instrument->playNote(0); break;
-
-		case 'w':
-			std::this_thread::sleep_for(std::chrono::milliseconds(int(beat*4*measure)));
-			break;
-		case 'h':
-			std::this_thread::sleep_for(std::chrono::milliseconds(int(beat*2*measure)));
-			break;
-		case 'q':
-			std::this_thread::sleep_for(std::chrono::milliseconds(int(beat)));
-			break;
-		case 'e':
-			std::this_thread::sleep_for(std::chrono::milliseconds(int(beat/2)));
-			break;
-		case 's':
-			std::this_thread::sleep_for(std::chrono::milliseconds(int(beat/4)));
-			break;
-		case 't':
-			std::this_thread::sleep_for(std::chrono::milliseconds(int(beat/8)));
-			break;
-		case 'S':
-			std::this_thread::sleep_for(std::chrono::milliseconds(int(beat/16)));
-			break;
-
-		case 'L':
-			if (octave != 1)
-			{
-				instrument->switchOctave(1);
-				octave = 1;
-				std::this_thread::sleep_for(std::chrono::milliseconds(100));
-			}
-			break;
-		case 'M':
-			if (octave != 2)
-			{
-				instrument->switchOctave(2);
-				octave = 2;
-				std::this_thread::sleep_for(std::chrono::milliseconds(20));
-			}
-			break;
-		case 'H':
-			if (octave != 3)
-			{
-				instrument->switchOctave(3);
-				octave = 3;
-				std::this_thread::sleep_for(std::chrono::milliseconds(20));
-			}
-			break;
-
-		default:
-			break;
-		}
+	if (_timer) {
+		delete _timer;
 	}
+}
 
-	// Reset octave to low for curtosy...
-	if (octave != 1)
+void MusicPlayer::setMusicSheet(MusicSheet data)
+{
+	_musicSheet = data;
+}
+
+int MusicPlayer::setInstrument(InstrumentType value)
+{
+	switch (value)
 	{
-		instrument->switchOctave(1);
-		octave = 1;
+	case MusicPlayer::BELL:
+		_instrumentType = BELL;
+		// todo load Bell
+		break;
+	case MusicPlayer::FLUTE:
+		_instrumentType = FLUTE;
+		// todo load Flute
+		break;
+	case MusicPlayer::HORN:
+		_instrumentType = HORN;
+		// todo load Horn
+		break;
+	default:
+		break;
 	}
-
 	return 0;
 }
-
-
-int MusicPlayer::setTempo(int value)
-{
-	tempo = value;
-	return 0;
-}
-
-
-int MusicPlayer::setMeasure(float value)
-{
-	measure = value;
-	return 0;
-}
-
 
 int MusicPlayer::getTempo()
 {
-	return tempo;
+	return _musicSheet.tempo;
 }
 
-
-float MusicPlayer::getMeasure()
+MusicPlayer::InstrumentType MusicPlayer::getInstrumentType()
 {
-	return measure;
+	return _instrumentType;
 }
 
-
-std::string MusicPlayer::getInstrumentName()
+float MusicPlayer::getTimeSignature()
 {
-	return instrumentName;
+	return _musicSheet.timeSignature;
+}
+
+QString MusicPlayer::instrumentTypeToQString(InstrumentType)
+{
+	switch (_instrumentType)
+	{
+	case MusicPlayer::BELL:
+		return "Bell";
+		break;
+	case MusicPlayer::FLUTE:
+		return "Flute";
+		break;
+	case MusicPlayer::HORN:
+		return "Horn";
+		break;
+	default:
+		break;
+	}
+	return 0;
+}
+
+int MusicPlayer::playSong()
+{
+	if (_isPlaying == true) {
+		return 1;
+	}
+
+	if (_timer == NULL)
+	{
+		_timer = new QTimer();
+		_timer->setInterval(_tickRate);
+		connect(_timer, SIGNAL(timeout()), this, SLOT(timerTimeout()));
+		_tickCounter = 0;
+		_noteCounter = 0;
+	}
+
+	_isPlaying = true;
+	_timer->start();
+
+	return 0;
+}
+
+int MusicPlayer::stopSong()
+{
+	if (!_isPlaying) {
+		return 1;
+	}
+
+	_isPlaying = false;
+	_timer->stop();
+	delete _timer;
+	_timer = NULL;
+
+	// todo:
+	//  set instrument to lowest octave
+
+	return 0;
+}
+
+int MusicPlayer::pauseSong()
+{
+	_timer->stop();
+	_isPlaying = false;
+	return 0;
+}
+
+void MusicPlayer::timerTimeout()
+{
+	_tickCounter--;
+
+	if (_tickCounter > 0) {
+		return;
+	}
+
+	qDebug() << _musicSheet.notes.at(_noteCounter);
+
+	int beatDuration = 60 * 1000 / _musicSheet.tempo;
+
+	switch (_musicSheet.notes.at(_noteCounter))
+	{
+	case NULL:
+		for (int forward = 1; _noteCounter + forward < _musicSheet.notes.size(); forward++)
+		{
+			switch (_musicSheet.notes.at(_noteCounter + forward))
+			{
+				case '1': case '2': case '3': case '4': case '5':
+				case '6': case '7': case '8': case '9': case '0':
+					forward = _musicSheet.notes.size();
+					break;
+				case 'w': case 'h': case 'q': case 's': case 't': case 'S':
+					// todo: stop current note
+					forward = _musicSheet.notes.size();
+					break;
+			default:
+				break;
+			}
+		}
+		break;
+
+	case '0': _tickCounter = 1; break;
+	case '1': _tickCounter = 1; break;
+	case '2': _tickCounter = 1; break;
+	case '3': _tickCounter = 1; break;
+	case '4': _tickCounter = 1; break;
+	case '5': _tickCounter = 1; break;
+	case '6': _tickCounter = 1; break;
+	case '7': _tickCounter = 1; break;
+	case '8': _tickCounter = 1; break;
+	case '9': _tickCounter = 1; break;
+	default: break;
+	}
+
+	switch (_musicSheet.notes.at(_noteCounter))
+	{
+	case 'w': _tickCounter = (beatDuration * _musicSheet.timeSignature * 4) / _tickRate; break;
+	case 'h': _tickCounter = (beatDuration * _musicSheet.timeSignature * 2) / _tickRate; break;
+	case 'q': _tickCounter = beatDuration * 1 / _tickRate; break;
+	case 'e': _tickCounter = beatDuration / 2 / _tickRate; break;
+	case 's': _tickCounter = beatDuration / 4 / _tickRate; break;
+	case 't': _tickCounter = beatDuration / 8 / _tickRate; break;
+	case 'S': _tickCounter = beatDuration / 16 / _tickRate; break;
+	case 'L': _tickCounter = 1; break;
+	case 'M': _tickCounter = 1; break;
+	case 'H': _tickCounter = 1; break;
+	default: break;
+	}
+
+	_noteCounter++;
 }

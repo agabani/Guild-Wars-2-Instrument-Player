@@ -1,37 +1,51 @@
-#pragma once
-#include "Bell.h"
-#include "Flute.h"
-#include "Horn.h"
+#ifndef __MUSIC_PLAYER_H__
+#define __MUSIC_PLAYER_H__
 
-class MusicPlayer
+class MusicPlayer : public QObject
 {
+	Q_OBJECT
+
 public:
 	MusicPlayer(void);
 	~MusicPlayer(void);
 
-public: // Instrument Config
-	int loadBell();
-	int loadFlute();
-	int loadHorn();
+	enum InstrumentType {
+		BELL, FLUTE, HORN 
+	};
 
-	int loadMusicSheet(std::vector <char> object);
-	int setTempo(int value);
-	int setMeasure(float value);
-
-	int getTempo();
-	float getMeasure();
-	std::string getInstrumentName();
+	struct MusicSheet {
+		int tempo;
+		float timeSignature;
+		std::vector <char> notes;
+	};
 
 public:
-	int playSong();
+	// setters
+	void setMusicSheet(MusicSheet);
+	int setInstrument(InstrumentType);
+
+	// getters
+	int getTempo();
+	float getTimeSignature();
+	InstrumentType getInstrumentType();
+
+	// utility
+	QString instrumentTypeToQString(InstrumentType);
+
+	// controller
+	int playSong(), stopSong(), pauseSong();
+
+	// play timer variables and functions
+private slots:
+	void timerTimeout();
 
 private:
-	int tempo;
-	float measure;
-	std::vector <char> musicSheet;
+	QTimer* _timer;
+	int _tickRate, _tickCounter, _noteCounter;
 
-	std::string instrumentName;
-
-	Instrument *instrument;
+	MusicSheet _musicSheet;
+	InstrumentType _instrumentType;
+	bool _isPlaying;
 };
 
+#endif // __MUSIC_PLAYER_H__

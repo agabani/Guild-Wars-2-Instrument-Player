@@ -3,14 +3,17 @@
 #include "about.h"
 #include "preference.h"
 
-// Remove following header
 #include "FileManager.h"
+
+MusicPlayer *badProgramming;
 
 Leaf::Leaf(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
 	reloadFileList();
+
+	badProgramming = &musicPlayer;
 }
 
 HHOOK Leaf::hHook(NULL);
@@ -57,10 +60,22 @@ LRESULT CALLBACK Leaf::lowLevelKeyBoardProc(int nCode, WPARAM wParam, LPARAM lPa
 
 	if (QString::fromUtf16((ushort*)lpszName) == "END")
 	{
-		UnhookWindowsHookEx(hHook);
-		hHook = NULL;
-		exit(0);
-		return NULL;
+//		UnhookWindowsHookEx(hHook);
+//		hHook = NULL;
+//		exit(0);
+//		return NULL;
+//		musicPlayer.stopSong();
+		badProgramming->stopSong();
+	}
+	else if (QString::fromUtf16((ushort*)lpszName) == "PGUP")
+	{
+//		musicPlayer.playSong();
+		badProgramming->playSong();
+	}
+	else if(QString::fromUtf16((ushort*)lpszName) == "PGDOWN")
+	{
+//		musicPlayer.pauseSong();
+		badProgramming->pauseSong();
 	}
 
 	return CallNextHookEx(hHook, nCode, wParam, lParam);
@@ -79,13 +94,12 @@ void Leaf::doLoadMusicSheet()
 
 	QString fileLocation = fileInfo.path() + "/" + fileInfo.fileName();
 
-	// todo: Remove QString to string, and use only QString
-	loadSong(fileLocation, &musicPlayer);
+	FileManager::loadSong(fileLocation, musicPlayer);
 
 	ui.songTextBrowser->setText(fileInfo.baseName());
 	ui.tempoTextBrowser->setText(QString::number(musicPlayer.getTempo()));
-	ui.measureTextBrowser->setText(QString::number(musicPlayer.getMeasure()));
-	ui.instrumentTextBrowser->setText(musicPlayer.getInstrumentName().c_str());
+	ui.timeSignatureTextBrowser->setText(QString::number(musicPlayer.getTimeSignature()));
+	ui.instrumentTextBrowser->setText(musicPlayer.instrumentTypeToQString(musicPlayer.getInstrumentType()));
 
 	hHook = SetWindowsHookEx(WH_KEYBOARD_LL, &Leaf::lowLevelKeyBoardProc, NULL, 0);
 	if (hHook == NULL)

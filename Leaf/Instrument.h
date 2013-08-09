@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __INSTRUMENT_H__
+#define __INSTRUMENT_H__
+
 #include "OnScreen.h"
 
 class Instrument
@@ -8,8 +10,13 @@ public:
 	~Instrument(void);
 
 public:
+	enum ControllerType {
+		ONSCREEN,
+		VKEYBOARD
+	};
+
 	virtual int init() = 0;
-	int loadOnScreen();
+	int loadOnScreen(ControllerType);
 
 public:
 	virtual int playNote(int note) = 0;
@@ -17,8 +24,10 @@ public:
 	virtual int switchOctave(int octave) = 0;
 
 protected:
-	Controller *controller;
-	int octave;
-	int note;
+	Controller *_controller;
+	int _octave;
+	int _note;
 	
 };
+
+#endif // __INSTRUMENT_H__

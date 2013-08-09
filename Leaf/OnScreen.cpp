@@ -1,13 +1,12 @@
 #include "stdafx.h"
 #include "OnScreen.h"
 
-
 OnScreen::OnScreen(void)
 {
 	// Obtain window handles
 	keyboard = FindWindowA(NULL, "On-Screen Keyboard");
-//	guildwars2 = FindWindowA(NULL, "Guild Wars 2");
-	guildwars2 = FindWindowA(NULL, "Untitled - Notepad");
+	guildwars2 = FindWindowA(NULL, "Guild Wars 2");
+//	guildwars2 = FindWindowA(NULL, "Untitled - Notepad");
 
 	// Check if On-Screen keyboard is active
 	RECT keyboardlocation;
@@ -29,17 +28,14 @@ OnScreen::OnScreen(void)
 	}
 }
 
-
 OnScreen::~OnScreen(void)
 {
 }
-
 
 int OnScreen::init()
 {
 	return 0;
 }
-
 
 int OnScreen::pressNumber(int number)
 {
@@ -56,7 +52,6 @@ int OnScreen::pressNumber(int number)
 	return 0;
 }
 
-
 int OnScreen::moveMouse(int x, int y)
 {
 	double fScreenWidth = ::GetSystemMetrics( SM_CXSCREEN )-1; 
@@ -72,7 +67,6 @@ int OnScreen::moveMouse(int x, int y)
 
 	return 0;
 }
-
 
 int OnScreen::leftClick()
 {

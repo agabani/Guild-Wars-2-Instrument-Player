@@ -83,7 +83,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="about.cpp" />
+    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="FileManager.cpp" />
+    <ClCompile Include="Flute.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_about.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -114,9 +116,11 @@
     <ClCompile Include="GeneratedFiles\Release\moc_preference.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Instrument.cpp" />
     <ClCompile Include="leaf.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MusicPlayer.cpp" />
+    <ClCompile Include="OnScreen.cpp" />
     <ClCompile Include="preference.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -124,7 +128,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Controller.h" />
     <ClInclude Include="FileManager.h" />
+    <ClInclude Include="Flute.h" />
     <ClInclude Include="GeneratedFiles\ui_about.h" />
     <ClInclude Include="GeneratedFiles\ui_preference.h" />
     <CustomBuild Include="preference.h">
@@ -168,6 +174,8 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
     </CustomBuild>
+    <ClInclude Include="Instrument.h" />
+    <ClInclude Include="OnScreen.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>

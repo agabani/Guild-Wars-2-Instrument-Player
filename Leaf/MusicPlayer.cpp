@@ -2,14 +2,20 @@
 #include "MusicPlayer.h"
 
 MusicPlayer::MusicPlayer(void)
-	: _timer (NULL), _tickRate(25), _isPlaying(false)
+	: _timer (NULL), _tickRate(25), _isPlaying(false), _instrument(NULL)
 {
 }
 
 MusicPlayer::~MusicPlayer(void)
 {
-	if (_timer) {
+	if (_instrument != NULL) {
 		delete _timer;
+		_instrument = NULL;
+	}
+
+	if (_instrument != NULL) {
+		delete _instrument;
+		_instrument = NULL;
 	}
 }
 
@@ -20,19 +26,24 @@ void MusicPlayer::setMusicSheet(MusicSheet data)
 
 int MusicPlayer::setInstrument(InstrumentType value)
 {
+	if (_instrument != NULL) {
+		delete _instrument;
+		_instrument = NULL;
+	}
+
 	switch (value)
 	{
 	case MusicPlayer::BELL:
 		_instrumentType = BELL;
-		// todo load Bell
+//		_instrument = new Bell; // todo: impliment bell class
 		break;
 	case MusicPlayer::FLUTE:
 		_instrumentType = FLUTE;
-		// todo load Flute
+		_instrument = new Flute;
 		break;
 	case MusicPlayer::HORN:
 		_instrumentType = HORN;
-		// todo load Horn
+//		_instrument = new Horn; // todo: impliment horn class
 		break;
 	default:
 		break;
@@ -106,8 +117,7 @@ int MusicPlayer::stopSong()
 	delete _timer;
 	_timer = NULL;
 
-	// todo:
-	//  set instrument to lowest octave
+	_instrument->switchOctave(1);
 
 	return 0;
 }
@@ -127,41 +137,45 @@ void MusicPlayer::timerTimeout()
 		return;
 	}
 
-	qDebug() << _musicSheet.notes.at(_noteCounter);
-
 	int beatDuration = 60 * 1000 / _musicSheet.tempo;
 
 	switch (_musicSheet.notes.at(_noteCounter))
 	{
 	case NULL:
-		for (int forward = 1; _noteCounter + forward < _musicSheet.notes.size(); forward++)
+		for (int scan = 1; scan + _noteCounter < _musicSheet.notes.size(); scan++)
 		{
-			switch (_musicSheet.notes.at(_noteCounter + forward))
+			switch (_musicSheet.notes.at(_noteCounter+scan))
 			{
-				case '1': case '2': case '3': case '4': case '5':
-				case '6': case '7': case '8': case '9': case '0':
-					forward = _musicSheet.notes.size();
-					break;
-				case 'w': case 'h': case 'q': case 's': case 't': case 'S':
-					// todo: stop current note
-					forward = _musicSheet.notes.size();
-					break;
+			case 0:
+				continue;
+				break;
+
+			case '0': case '1': case '2': case '3': case '4':
+			case '5': case '6': case '7': case '8': case '9':
+				scan = _musicSheet.notes.size();
+				break;
+
+			case 'w': case 'h': case 'q': case 'e': case 's':
+			case 't': case 'S':
+				_instrument->stopNote();
+				break;
+
 			default:
 				break;
 			}
 		}
 		break;
 
-	case '0': _tickCounter = 1; break;
-	case '1': _tickCounter = 1; break;
-	case '2': _tickCounter = 1; break;
-	case '3': _tickCounter = 1; break;
-	case '4': _tickCounter = 1; break;
-	case '5': _tickCounter = 1; break;
-	case '6': _tickCounter = 1; break;
-	case '7': _tickCounter = 1; break;
-	case '8': _tickCounter = 1; break;
-	case '9': _tickCounter = 1; break;
+	case '0': _tickCounter = 1; _instrument->playNote(0); break;
+	case '1': _tickCounter = 1; _instrument->playNote(1); break;
+	case '2': _tickCounter = 1; _instrument->playNote(2); break;
+	case '3': _tickCounter = 1; _instrument->playNote(3); break;
+	case '4': _tickCounter = 1; _instrument->playNote(4); break;
+	case '5': _tickCounter = 1; _instrument->playNote(5); break;
+	case '6': _tickCounter = 1; _instrument->playNote(6); break;
+	case '7': _tickCounter = 1; _instrument->playNote(7); break;
+	case '8': _tickCounter = 1; _instrument->playNote(8); break;
+	case '9': _tickCounter = 1; _instrument->playNote(9); break;
 	default: break;
 	}
 
@@ -174,9 +188,9 @@ void MusicPlayer::timerTimeout()
 	case 's': _tickCounter = beatDuration / 4 / _tickRate; break;
 	case 't': _tickCounter = beatDuration / 8 / _tickRate; break;
 	case 'S': _tickCounter = beatDuration / 16 / _tickRate; break;
-	case 'L': _tickCounter = 1; break;
-	case 'M': _tickCounter = 1; break;
-	case 'H': _tickCounter = 1; break;
+	case 'L': _tickCounter = 1; _instrument->switchOctave(1); break;
+	case 'M': _tickCounter = 1; _instrument->switchOctave(2); break;
+	case 'H': _tickCounter = 1; _instrument->switchOctave(3); break;
 	default: break;
 	}
 

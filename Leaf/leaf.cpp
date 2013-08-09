@@ -55,17 +55,18 @@ LRESULT CALLBACK Leaf::lowLevelKeyBoardProc(int nCode, WPARAM wParam, LPARAM lPa
 	buffer[4] = L'\0';
 
 #ifdef __DEBUG__
-	qDebug() << "Key: " << cKey.vkCode << " " << QString::fromUtf16((ushort*)buffer) << " " << QString::fromUtf16((ushort*)lpszName) << "\n";
+//	qDebug() << "Key: " << cKey.vkCode << " " << QString::fromUtf16((ushort*)buffer) << " " << QString::fromUtf16((ushort*)lpszName) << "\n";
 #endif // __DEBUG__
 
 	if (QString::fromUtf16((ushort*)lpszName) == "END")
 	{
-//		UnhookWindowsHookEx(hHook);
-//		hHook = NULL;
-//		exit(0);
-//		return NULL;
-//		musicPlayer.stopSong();
 		badProgramming->stopSong();
+		UnhookWindowsHookEx(hHook);
+		hHook = NULL;
+//		exit(0);
+		return NULL;
+//		musicPlayer.stopSong();
+		
 	}
 	else if (QString::fromUtf16((ushort*)lpszName) == "PGUP")
 	{

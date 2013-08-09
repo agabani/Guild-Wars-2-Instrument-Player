@@ -1,6 +1,10 @@
 #ifndef __MUSIC_PLAYER_H__
 #define __MUSIC_PLAYER_H__
 
+//#include "Bell.h"
+#include "Flute.h"
+//#include "Horn.h"
+
 class MusicPlayer : public QObject
 {
 	Q_OBJECT
@@ -42,6 +46,8 @@ private slots:
 private:
 	QTimer* _timer;
 	int _tickRate, _tickCounter, _noteCounter;
+
+	Instrument* _instrument;
 
 	MusicSheet _musicSheet;
 	InstrumentType _instrumentType;

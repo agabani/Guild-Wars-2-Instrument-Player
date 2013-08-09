@@ -1,70 +1,49 @@
 #include "stdafx.h"
 #include "Flute.h"
 
-
 Flute::Flute(void)
 {
-	note = -1;
+	_note = -1;
 	notePlaying = false;
+	_controller = new OnScreen;
 }
-
 
 Flute::~Flute(void)
 {
 }
-
 
 int Flute::init()
 {
 	return 0;
 }
 
-
-int Flute::playNote(int _note)
+int Flute::playNote(int value)
 {
-	if (note == _note)
-	{
-		stopNote();
-		std::this_thread::sleep_for(std::chrono::milliseconds(100));
-	}
-
-	controller->pressNumber(_note);
+	_controller->pressNumber(value);
 	notePlaying = true;
 
-	note = _note;
+	_note = value;
 	return 0;
 }
 
 int Flute::stopNote()
 {
-	if (notePlaying == false)
+	if (notePlaying == false) {
 		return 0;
+	}
 
-	controller->pressNumber(note);
+	_controller->pressNumber(0);
 	notePlaying = false;
 	return 0;
 }
 
-int Flute::switchOctave(int _octave)
+int Flute::switchOctave(int octave)
 {
-	blocker.lock();
-	if (_octave != octave) {
-		controller->pressNumber(9);
-		octave = _octave;
+	if (_octave == octave) {
+		return 0;
 	}
-
-	std::thread t(&Flute::startTimeout,this);
-	t.detach();
 	
-	blocker.unlock();
-
+	_controller->pressNumber(9);
+	_octave = octave;
 	return 0;
 }
-
-
-void Flute::startTimeout()
-{
-	std::lock_guard<std::mutex> m(blocker);
-	std::this_thread::sleep_for(std::chrono::milliseconds(500));
-}
-

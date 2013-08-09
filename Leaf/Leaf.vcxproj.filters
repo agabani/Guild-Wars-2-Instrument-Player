@@ -51,6 +51,21 @@
     <Filter Include="File Manager">
       <UniqueIdentifier>{402665ac-c527-4fca-a99c-4665ed8bb244}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Music\Music Player">
+      <UniqueIdentifier>{c148e1de-b1b5-4dc4-b65a-09fe9f4676f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Music\Instruments">
+      <UniqueIdentifier>{26ad0ff3-153c-4797-b802-b868088116b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Music\Controller">
+      <UniqueIdentifier>{4d26ad0f-efe6-459a-bebd-0b1a66e87e49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Music\Controller\On-Screen">
+      <UniqueIdentifier>{38b8318a-989a-4cdb-b8b9-ec24cf6f4822}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Music\Instruments\Flute">
+      <UniqueIdentifier>{8dbc1f9a-4625-45ea-9e1c-d0283716e63b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -89,9 +104,6 @@
     <ClCompile Include="preference.cpp">
       <Filter>GUI\Preference</Filter>
     </ClCompile>
-    <ClCompile Include="MusicPlayer.cpp">
-      <Filter>Music</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_MusicPlayer.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -100,6 +112,21 @@
     </ClCompile>
     <ClCompile Include="FileManager.cpp">
       <Filter>File Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MusicPlayer.cpp">
+      <Filter>Music\Music Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Instrument.cpp">
+      <Filter>Music\Instruments</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller.cpp">
+      <Filter>Music\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="OnScreen.cpp">
+      <Filter>Music\Controller\On-Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="Flute.cpp">
+      <Filter>Music\Instruments\Flute</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +144,18 @@
     </ClInclude>
     <ClInclude Include="FileManager.h">
       <Filter>File Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Instrument.h">
+      <Filter>Music\Instruments</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller.h">
+      <Filter>Music\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="OnScreen.h">
+      <Filter>Music\Controller\On-Screen</Filter>
+    </ClInclude>
+    <ClInclude Include="Flute.h">
+      <Filter>Music\Instruments\Flute</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -142,7 +181,7 @@
       <Filter>GUI\Preference</Filter>
     </CustomBuild>
     <CustomBuild Include="MusicPlayer.h">
-      <Filter>Music</Filter>
+      <Filter>Music\Music Player</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

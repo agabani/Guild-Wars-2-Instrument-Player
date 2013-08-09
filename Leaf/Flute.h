@@ -14,10 +14,6 @@ public:
 	int switchOctave(int octave);
 
 private:
-	void startTimeout();
-
-private:
-	std::mutex blocker;
 	bool notePlaying;
 };
 

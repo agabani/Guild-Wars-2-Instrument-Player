@@ -1,0 +1,14 @@
+Instrument="flute"
+Tempo="145"
+Measure="1"
+
+[SHEET START]
+6w
+[6e 5e H1q 1q 2q][2q 3q 1q L5q][6e 5e H1q 1q 2e 2e][1q q h][L6e 5e H1q 1q 2q]
+[2q 3q 1q L5q][6e 5e H1q 1q 2q][2q 3q 2q q][L6e 5e H1q 1q 2q][2q 3q 1q L5q][6e 5e H1q 1q 2q]
+[1q q h][4e 3e 1e L6q H1e 2e L6e][H1q L5q 6q H1q][4e 3e 1e L6q H1e 2e L6e][H1q q h]
+[4e 3e 1e L6q H1e 2e L6e][H1q L5q 6q H1q][L5qe H1e L4qe 4e][h 2e 5e H1e 2e][2q 1e L6q H1e 2e 3e]
+[5e 2e 3q 1e L5e H1e 2e][2q 1e L6q H2e 1e 5e][3q q L2e 5e H1e 2e][2q 1e L6q H1e 1e 3e][5e 2e 3q 1q L7q]
+[6qe 6e 7q H1e L7e][7e H1q e L2e 5e H1e 2e][2q 1e L6q H1e 2e 3e][5e 2e 3q 1e L5e H1e 2e][2q 1e L6q H2e 1e 5e]
+[3q q L2e 5e H1e 2e][2q 1e L6q H1e 1e 3e][5e 2e 3q 1q L7q][6qe 7q H1e L7q][H1q q h]
+[SHEET END]

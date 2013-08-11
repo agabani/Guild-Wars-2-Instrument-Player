@@ -60,13 +60,8 @@ LRESULT CALLBACK Leaf::lowLevelKeyBoardProc(int nCode, WPARAM wParam, LPARAM lPa
 
 	if (QString::fromUtf16((ushort*)lpszName) == "END")
 	{
-		badProgramming->stopSong();
-		UnhookWindowsHookEx(hHook);
-		hHook = NULL;
-//		exit(0);
-		return NULL;
 //		musicPlayer.stopSong();
-		
+		badProgramming->stopSong();
 	}
 	else if (QString::fromUtf16((ushort*)lpszName) == "PGUP")
 	{
@@ -102,13 +97,17 @@ void Leaf::doLoadMusicSheet()
 	ui.timeSignatureTextBrowser->setText(QString::number(musicPlayer.getTimeSignature()));
 	ui.instrumentTextBrowser->setText(musicPlayer.instrumentTypeToQString(musicPlayer.getInstrumentType()));
 
+	if (hHook != NULL)
+	{
+		UnhookWindowsHookEx(hHook);
+		hHook = NULL;
+	}
+
 	hHook = SetWindowsHookEx(WH_KEYBOARD_LL, &Leaf::lowLevelKeyBoardProc, NULL, 0);
 	if (hHook == NULL)
 	{
 		qDebug() << "Hook failed\n";
 	}
-
-//	musicPlayer.playSong();
 }
 
 void Leaf::doRefresh()

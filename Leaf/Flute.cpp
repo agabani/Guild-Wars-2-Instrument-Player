@@ -5,7 +5,7 @@ Flute::Flute(void)
 {
 	_note = -1;
 	notePlaying = false;
-	_controller = new OnScreen;
+	loadController(ONSCREEN);
 }
 
 Flute::~Flute(void)

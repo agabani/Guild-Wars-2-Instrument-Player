@@ -16,7 +16,7 @@ public:
 	};
 
 	virtual int init() = 0;
-	int loadOnScreen(ControllerType);
+	int loadController(ControllerType);
 
 public:
 	virtual int playNote(int note) = 0;

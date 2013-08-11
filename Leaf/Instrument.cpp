@@ -15,7 +15,7 @@ Instrument::~Instrument(void)
 	}
 }
 
-int Instrument::loadOnScreen(ControllerType value)
+int Instrument::loadController(ControllerType value)
 {
 	if (_controller != NULL)
 	{

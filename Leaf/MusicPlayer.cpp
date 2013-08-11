@@ -195,4 +195,8 @@ void MusicPlayer::timerTimeout()
 	}
 
 	_noteCounter++;
+
+	if (_noteCounter >= _musicSheet.notes.size()) {
+		stopSong();
+	}
 }

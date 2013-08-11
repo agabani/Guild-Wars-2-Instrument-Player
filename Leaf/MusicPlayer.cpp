@@ -10,7 +10,7 @@ MusicPlayer::~MusicPlayer(void)
 {
 	if (_instrument != NULL) {
 		delete _timer;
-		_instrument = NULL;
+		_timer = NULL;
 	}
 
 	if (_instrument != NULL) {
